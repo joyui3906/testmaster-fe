@@ -1,5 +1,16 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@src/*": ["./src/*"],
+      "@const/*": ["./src/constants/*"],
+      "@assets/*": ["./src/assets/*"],
+      "@mocks/*": ["./apis/mocks/*"],
+      "@apis/*": ["./apis/*"],
+      "@styles/*": ["./src/styles/*"],
+      "@static/*": ["./src/static/*"],
+      "@axios": ["./src/utils/axios"]
+    },
     "target": "es5",
     "lib": [
       "dom",
