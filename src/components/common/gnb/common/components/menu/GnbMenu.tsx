@@ -1,7 +1,7 @@
 import { PATH } from '@src/constants/path';
 import useMediaQuery, { getMediaQuery } from '@src/hooks/components/useMediaQuery';
 import useMessageDialog from '@src/hooks/components/useMessageDialog';
-//import useAuth from '@src/hooks/useAuth';
+import useAuth from '@src/hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import LoggedInMobileMenu from './mobile/LoggedInMobileMenu';
 import NonLoginMobileMenu from './mobile/NonLoginMobileMenu';

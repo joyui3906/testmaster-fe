@@ -1,4 +1,4 @@
-//import { initLoginInfo } from '@src/apis';
+import { initLoginInfo } from '@src/apis';
 import { GnbType } from '@src/components/common/gnb/Gnb.type';
 import { STATE_KEYS } from '@src/constants/keys';
 import { atom } from 'recoil';
@@ -6,11 +6,11 @@ import { recoilPersist } from 'recoil-persist';
 
 const { persistAtom } = recoilPersist();
 
-/*export const LoginInfoState = atom<LoginInfo>({
+export const LoginInfoState = atom<LoginInfo>({
   key: STATE_KEYS.LOGIN_INFO,
   default: initLoginInfo(),
   effects_UNSTABLE: [persistAtom],
-});*/
+});
 
 export const IsMobileGnbMenuOpen = atom<boolean>({
   key: STATE_KEYS.IS_MOBILE_GNB_MENU_OPEN,
