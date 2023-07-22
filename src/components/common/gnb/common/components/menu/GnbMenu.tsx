@@ -1,10 +1,7 @@
 import { PATH } from '@src/constants/path';
 import useMediaQuery, { getMediaQuery } from '@src/hooks/components/useMediaQuery';
-import useMessageDialog from '@src/hooks/components/useMessageDialog';
 import useAuth from '@src/hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
-import LoggedInMobileMenu from './mobile/LoggedInMobileMenu';
-import NonLoginMobileMenu from './mobile/NonLoginMobileMenu';
 import LoggedInPcMenu from './pc/LoggedInPcMenu';
 import NonLoginPcMenu from './pc/NonLoginPcMenu';
 
@@ -20,7 +17,6 @@ const GnbMenu = ({ subscriptionButtonClassName, onLoginClick, onSubscriptionClic
   const isPc = useMediaQuery(getMediaQuery('up', 'md'));
   const navigate = useNavigate();
   const { isLogin, logout, openLoginDialog } = useAuth();
-  const { openMessageDialog } = useMessageDialog();
 
   // handlers
   const handleModifyClick = () => {
@@ -33,10 +29,10 @@ const GnbMenu = ({ subscriptionButtonClassName, onLoginClick, onSubscriptionClic
 
   const handleLogoutClick = async () => {
     try {
-      //await logout();
+      await logout();
       navigate(PATH.HOME.getPath());
     } catch (err) {
-      openMessageDialog(err);
+      //openMessageDialog(err);
     }
   };
 
@@ -65,13 +61,9 @@ const GnbMenu = ({ subscriptionButtonClassName, onLoginClick, onSubscriptionClic
   };
 
   if (isLogin()) {
-    if (isPc) {
       return <LoggedInPcMenu onMyPageClick={handleMyPageClick} onLogoutClick={handleLogoutClick} />;
-    }
-    return <LoggedInMobileMenu onMyPageClick={handleMyPageClick} onLogoutClick={handleLogoutClick} />;
   }
 
-  if (isPc) {
     return (
       <NonLoginPcMenu
         subscriptionButtonClassName={subscriptionButtonClassName}
@@ -80,15 +72,6 @@ const GnbMenu = ({ subscriptionButtonClassName, onLoginClick, onSubscriptionClic
         onSubscriptionClick={handleSubscriptionClick}
       />
     );
-  }
-  return (
-    <NonLoginMobileMenu
-      subscriptionButtonClassName={subscriptionButtonClassName}
-      onGoRegisterClick={handleRegisterClick}
-      onLoginClick={handleLoginClick}
-      onSubscriptionClick={handleSubscriptionClick}
-    />
-  );
 };
 
 export default GnbMenu;

@@ -1,5 +1,5 @@
 import { getPathSpec } from '@src/constants/path';
-import { CurrentGnbType, IsGnbOpen, IsMobileGnbMenuOpen } from '@src/states/GlobalState';
+import {CurrentGnbType, IsGnbOpen, IsMobileGnbMenuOpen} from '@src/states/GlobalState';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
@@ -22,12 +22,12 @@ const Gnb = () => {
         // 페이지 이동 시 마다 mobile gnb를 닫는다.
         setMobileGnbMenuOpen(false);
         // path에 따른 Gnb Style 교체
-        const pathSpec = getPathSpec(location.pathname);
+/*        const pathSpec = getPathSpec(location.pathname);
         if (pathSpec) {
             setCurrentGnbType(pathSpec.gnbType);
             setGnbOpen(pathSpec.open);
             setElevationType(pathSpec.elevation);
-        }
+        }*/
     }, [location]);
 
 
