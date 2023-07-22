@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { login, logout, refreshToken, register } from '../../apis/auth';
-import { QUERY_KEYS } from '../../constants/keys';
-import { ApiError } from '../../utils/error';
+import { login, logout, refreshToken, register } from '@src/apis/auth';
+import { QUERY_KEYS } from '@const/keys';
+import { ApiError } from '@src/utils/error';
 
 export function useLogin(options?: QueryOptions) {
   return useMutation<LoginResponse, ApiError, LoginParam>(QUERY_KEYS.LOGIN, login, { ...options });
