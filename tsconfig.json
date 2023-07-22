@@ -1,11 +1,19 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "baseUrl": ".",
+    "paths": {
+      "@src/*": ["src/*"],
+      "@const/*": ["src/constants/*"],
+      "@assets/*": ["src/assets/*"],
+      "@mocks/*": ["apis/mocks/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@apis/*": ["apis/*"],
+      "@styles/*": ["src/styles/*"],
+      "@static/*": ["src/static/*"],
+      "@axios": ["src/utils/axios"]
+    },
+    "target": "es6",
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -20,7 +28,6 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["**/node_modules"]
 }
