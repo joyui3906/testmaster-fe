@@ -1,6 +1,6 @@
-import { initLoginInfo } from '../apis';
-import { GnbType } from '../components/common/gnb/Gnb.type';
-import { STATE_KEYS } from '../constants/keys';
+import { initLoginInfo } from '@src/apis';
+import { GnbType } from '@src/components/common/gnb/Gnb.type';
+import { STATE_KEYS } from '@const/keys';
 import { atom } from 'recoil';
 import { recoilPersist } from 'recoil-persist';
 

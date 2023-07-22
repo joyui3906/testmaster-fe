@@ -1,4 +1,4 @@
-import AppConfig from '../config';
+import AppConfig from '@src/config';
 import axios from 'axios';
 import { ApiError, makeApiError } from './error';
 import { getSession } from './jwt';
