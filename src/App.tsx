@@ -1,10 +1,12 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Gnb from "./components/common/gnb/Gnb";
 
 function App() {
   return (
     <div className="App">
+      <Gnb/>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
