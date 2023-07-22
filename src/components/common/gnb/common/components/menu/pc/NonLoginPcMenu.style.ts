@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import {Button, Divider, Typography} from "@mui/material";
-import {Color} from "@src/components/common";
+import {Color} from "../../../../../../../components/common";
 
 export const NonLoginPcMenuBase = styled.div`
   display: flex;

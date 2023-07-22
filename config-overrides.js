@@ -6,6 +6,7 @@ module.exports = override(
     ['@src']: path.resolve(__dirname, './src'),
     ['@const']: path.resolve(__dirname, './src/constants'),
     ['@assets']: path.resolve(__dirname, './src/assets'),
+    ['@hooks']: path.resolve(__dirname, './src/hooks'),
     ['@mocks']: path.resolve(__dirname, './apis/mocks'),
     ['@apis']: path.resolve(__dirname, './apis'),
     ['@styles']: path.resolve(__dirname, './src/styles'),

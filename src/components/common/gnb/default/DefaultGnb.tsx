@@ -7,7 +7,7 @@ const DefaultGnb = (props: GnbProps) => (
     <GnbBase {...props}>
         <GnbContentArea>
             <LogoArea>
-                <Logo />
+                로고
             </LogoArea>
             <LinkArea>
             </LinkArea>

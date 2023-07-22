@@ -1,6 +1,6 @@
-import { PATH } from '@src/constants/path';
-import useMediaQuery, { getMediaQuery } from '@src/hooks/components/useMediaQuery';
-import useAuth from '@src/hooks/useAuth';
+import { PATH } from '../../../../../../constants/path';
+import useMediaQuery, { getMediaQuery } from '../../../../../../hooks/components/useMediaQuery';
+import useAuth from '../../../../../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import LoggedInPcMenu from './pc/LoggedInPcMenu';
 import NonLoginPcMenu from './pc/NonLoginPcMenu';

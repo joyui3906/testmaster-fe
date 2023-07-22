@@ -1,8 +1,8 @@
-import axiosInstance from '@src/utils/axios';
-import URL from '@const/api';
-import { makeEmptyApiError } from '@src/utils/error';
-import { isEmailValid, isNameValid, isPhoneValid, isPwdCheckValid, isPwdValid } from '@src/utils/validation';
-import { VALIDATION_RESULT } from '@src/constants/result';
+import axiosInstance from '../utils/axios';
+import URL from '../constants/api';
+import { makeEmptyApiError } from '../utils/error';
+import { isEmailValid, isNameValid, isPhoneValid, isPwdCheckValid, isPwdValid } from '../utils/validation';
+import { VALIDATION_RESULT } from '../constants/result';
 import { getSimpleBooleanResponseResult } from '.';
 
 export const login = async (param: LoginParam) => {

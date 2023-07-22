@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import {Button, ListItem, Typography} from "@mui/material";
-import {Color} from "@src/components/common";
+import {Color} from "../../../../../../../components/common";
 
 export const MenuBase = styled.div`
   display: flex;

@@ -1,5 +1,5 @@
 import { getPathSpec } from '@src/constants/path';
-import {CurrentGnbType, IsGnbOpen, IsMobileGnbMenuOpen} from '@src/states/GlobalState';
+import {CurrentGnbType, IsGnbOpen, IsMobileGnbMenuOpen} from '../../../states/GlobalState';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useRecoilState } from 'recoil';

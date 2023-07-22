@@ -1,6 +1,6 @@
 import {Typography} from '@mui/material';
-import {PATH} from '@src/constants/path';
-import useAuth from '@src/hooks/useAuth';
+import {PATH} from '../../../../../../../constants/path';
+import useAuth from '../../../../../../../hooks/useAuth';
 import {useNavigate} from 'react-router-dom';
 import {DropdownLabel, DropdownListItem, MenuBase, QuestAddButton} from './LoggedInPcMenu.style';
 

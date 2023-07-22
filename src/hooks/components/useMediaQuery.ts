@@ -1,4 +1,4 @@
-import { getMaxMediaQuery, getMinMediaQuery } from '@src/utils/breakpoints';
+import { getMaxMediaQuery, getMinMediaQuery } from '../../utils/breakpoints';
 import { useEffect, useState } from 'react';
 
 export type MediaQueryType = 'up' | 'down';

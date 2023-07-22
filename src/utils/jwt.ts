@@ -1,4 +1,4 @@
-import { STORAGE_KEYS } from '@src/constants/keys';
+import { STORAGE_KEYS } from '../constants/keys';
 import jwtDecode from 'jwt-decode';
 
 // TODO : Expired Token 처리 필요

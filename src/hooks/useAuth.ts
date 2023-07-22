@@ -1,9 +1,9 @@
-import { QUERY_KEYS } from '@src/constants/keys';
-import { PATH } from '@src/constants/path';
-import { LoginInfoState, OpenLoginDialogState } from '@src/states/GlobalState';
-import { ApiError, makeApiError } from '@src/utils/error';
-import { clearSession, getSession, isTokenValid as getTokenStatus, setSession } from '@src/utils/jwt';
-import { invalidateQueries } from '@src/utils/query';
+import { QUERY_KEYS } from '../constants/keys';
+import { PATH } from '../constants/path';
+import { LoginInfoState, OpenLoginDialogState } from '../states/GlobalState';
+import { ApiError, makeApiError } from '../utils/error';
+import { clearSession, getSession, isTokenValid as getTokenStatus, setSession } from '../utils/jwt';
+import { invalidateQueries } from '../utils/query';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';

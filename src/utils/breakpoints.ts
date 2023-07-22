@@ -1,4 +1,4 @@
-import { BREAK_POINT } from '@src/styles/CommonStyle';
+import { BREAK_POINT } from '../styles/CommonStyle';
 
 export const getMinMediaQuery = (key: keyof typeof BREAK_POINT) => `(min-width: ${BREAK_POINT[key]}px)`;
 

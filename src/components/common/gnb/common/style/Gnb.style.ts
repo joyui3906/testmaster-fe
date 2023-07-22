@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { GnbProps } from '../../Gnb.type';
 import {Typography} from "@mui/material";
-import {Breakpoint, Color} from "@src/components/common";
+import {Breakpoint, Color} from "../../../../../components/common";
 
 export const GnbBase = styled.div<GnbProps>`
   display: flex;
