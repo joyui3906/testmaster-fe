@@ -1,5 +1,5 @@
-import { REGEX } from '../constants/regex';
-import { VALIDATION_RESULT } from '../constants/result';
+import { REGEX } from '@const/regex';
+import { VALIDATION_RESULT } from '@const/result';
 
 export const isNameValid = (name?: string): ValidationResult => {
   if (!name || name === '') {
