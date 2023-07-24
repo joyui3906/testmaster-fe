@@ -15,19 +15,9 @@ interface PathSpec {
 type Page =
   | 'ROOT'
   | 'HOME'
-  | 'SAAS_INTRODUCE'
-  | 'PARTNER_INTRODUCE'
-  | 'PRICING'
   | 'REGISTER'
-  | 'SAAS_REGISTER'
   | 'MY_PAGE'
   | 'MODIFY_MY_INFO'
-  | 'APPLICATION_LIST'
-  | 'APPLICATION_DETAIL'
-  | 'QUEST_ADD'
-  | 'QUEST_ACCOUNT_REGISTER'
-  | 'QUEST_LIST'
-  | 'QUEST_DETAIL'
   | 'LOGIN'
   | 'LOGIN_PAGE'
   | 'LOGIN_REQUIRED'
@@ -53,34 +43,9 @@ export const PATH: Path = {
     gnbType: 'default',
     open: true,
   },
-  PRICING: {
-    routerPattern: '/pricing',
-    getPath: () => '/pricing',
-    gnbType: 'default',
-    open: true,
-    elevation: 'pc',
-  },
-  SAAS_INTRODUCE: {
-    routerPattern: '/introduce/saas',
-    getPath: () => '/introduce/saas',
-    gnbType: 'saas',
-    open: true,
-  },
-  PARTNER_INTRODUCE: {
-    routerPattern: '/introduce/partner',
-    getPath: () => '/introduce/partner',
-    gnbType: 'default',
-    open: true,
-  },
   REGISTER: {
     routerPattern: '/register',
     getPath: () => '/register',
-    gnbType: 'simple',
-    open: true,
-  },
-  SAAS_REGISTER: {
-    routerPattern: '/saas/register',
-    getPath: () => '/saas/register',
     gnbType: 'simple',
     open: true,
   },
@@ -93,43 +58,6 @@ export const PATH: Path = {
   MODIFY_MY_INFO: {
     routerPattern: '/mypage/modify',
     getPath: () => '/mypage/modify',
-    gnbType: 'default',
-    open: true,
-  },
-  APPLICATION_LIST: {
-    routerPattern: '/quest/:uuid/application',
-    getPath: (uuid?: string) => `/quest/${uuid}/application`,
-    gnbType: 'default',
-    open: true,
-  },
-  APPLICATION_DETAIL: {
-    routerPattern: '/quest/:uuid/application/:applicationId',
-    getPath: (uuid?: string, applicationId?: string) => `/quest/${uuid}/application/${applicationId}`,
-    gnbType: 'default',
-    open: true,
-  },
-  QUEST_ADD: {
-    routerPattern: '/quest/add',
-    getPath: (uuid?: string) => `/quest/add${uuid ? `/${uuid}` : ''}`,
-    gnbType: 'default',
-    open: true,
-  },
-  QUEST_ACCOUNT_REGISTER: {
-    routerPattern: '/quest/register',
-    getPath: () => '/quest/register',
-    gnbType: 'simple',
-    open: true,
-  },
-  QUEST_LIST: {
-    routerPattern: '/quest/list',
-    getPath: () => '/quest/list',
-    gnbType: 'default',
-    open: true,
-  },
-  QUEST_DETAIL: {
-    // 여기 수정 필요할듯?
-    routerPattern: '/quest/detail',
-    getPath: (uuid?: string) => `/quest/detail${uuid ? `/${uuid}` : ''}`,
     gnbType: 'default',
     open: true,
   },
