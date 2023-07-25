@@ -6,6 +6,10 @@ import AuthRoute from './AuthRoute';
 import NoAuthRoute from './NoAuthRoute';
 
 
+const Register = Loadable(lazy(() => import('@src/pages/register/RegisterPage')));
+
+// error
+const PageNotFound = Loadable(lazy(() => import('@src/pages/error/Page404')));
 
 export interface LocationState {
   background?: any;
@@ -28,12 +32,15 @@ const Router = () => {
 
         {/* 비로그인 상태일때만 접근 가능 */}
         <Route element={<NoAuthRoute />}>
+          <Route path={PATH.REGISTER.routerPattern} element={<Register />} />
 
 
 
 
         </Route>
 
+
+        <Route path="*" element={<PageNotFound />} />
 
       </Routes>
       {background && (

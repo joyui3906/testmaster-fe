@@ -51,7 +51,7 @@ export const isPwdValid = (pwd?: string | null): ValidationResult => {
 };
 
 export const isPwdCheckValid = (param: CheckPwdParam): ValidationResult => {
-  if (param.init === false) {
+  if (!param.init) {
     return VALIDATION_RESULT.NONE;
   }
   if (!param.pwdCheck || param.pwdCheck === '') {

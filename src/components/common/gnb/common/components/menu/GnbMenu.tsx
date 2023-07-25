@@ -57,7 +57,7 @@ const GnbMenu = ({ subscriptionButtonClassName, onLoginClick, onSubscriptionClic
       onSubscriptionClick();
       return;
     }
-    navigate(PATH.QUEST_ACCOUNT_REGISTER.getPath());
+    //navigate(PATH.QUEST_ACCOUNT_REGISTER.getPath());
   };
 
   if (isLogin()) {
