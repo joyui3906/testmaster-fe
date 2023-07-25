@@ -11,7 +11,7 @@ const LoggedInPcMenu = ({onMyPageClick, onLogoutClick}: LoggedInMenuProps) => {
 
     // handlers
     const handleClickGoQuestAddPage = () => {
-        navigate(PATH.QUEST_ADD.getPath());
+        //navigate(PATH.QUEST_ADD.getPath());
     };
 
     return (

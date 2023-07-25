@@ -1,5 +1,18 @@
 import styled from "@emotion/styled";
 
+export const AppContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #F5F6FA;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  min-width: 320px;
+
+  position: fixed;
+`;
+
 export const BREAK_POINT = {
     xs: 0,
     sm: 600,
