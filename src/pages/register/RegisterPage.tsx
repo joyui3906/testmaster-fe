@@ -26,11 +26,11 @@ const ContentStyle = styled.div`
   padding: theme.spacing(12, 0),
 `;
 
-interface Page404Props {
+interface RegisterProps {
     delayTimeMills?: number;
 }
 
-const RegisterPage = ({delayTimeMills = 0}: Page404Props) => {
+const RegisterPage = ({delayTimeMills = 0}: RegisterProps) => {
 
     const [formData, setFormData] = useState({
         email: '',
