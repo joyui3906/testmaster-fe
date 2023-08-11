@@ -1,7 +1,6 @@
 import React, {ChangeEvent, FormEvent, useState} from 'react';
-import {Button, Container, Stack, TextField} from '@mui/material';
+import {Button, Grid, Stack, TextField} from '@mui/material';
 import Page from "@src/components/common/page/Page";
-import { CenteredContainer } from './LoginPage.style';
 
 
 interface FormData {
@@ -30,13 +29,13 @@ const LoginPage: React.FC = () => {
 
     return (
         <Page>
-            <CenteredContainer>
                 <Stack
                     display="flex"
                     spacing={2}
                     direction='row'
+                    height='60vh'
                 >
-                    <Stack>
+                    <Stack justifyContent="center">
                         <TextField
                             variant="outlined"
                             margin="normal"
@@ -58,9 +57,9 @@ const LoginPage: React.FC = () => {
                             onChange={handleChange}
                         />
                     </Stack>
-                    <Stack sx={{flexShrink: 0}} justifyContent="center">
+                    <Stack justifyContent="center">
                         <Button
-                            style={{height: '85%'}}
+                            style={{height:136}}
                             type="submit"
                             variant="contained"
                             color="primary"
@@ -69,7 +68,6 @@ const LoginPage: React.FC = () => {
                         </Button>
                     </Stack>
                 </Stack>
-            </CenteredContainer>
         </Page>
     );
 };
