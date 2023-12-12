@@ -19,10 +19,10 @@ type Page =
   | 'MY_PAGE'
   | 'MODIFY_MY_INFO'
   | 'LOGIN'
-  | 'LOGIN_PAGE'
   | 'LOGIN_REQUIRED'
   | 'SEND_PASSWORD_RESET_EMAIL'
   | 'CHANGE_PASSWORD'
+  | 'SEARCH'
   | 404
   | 500;
 
@@ -67,13 +67,6 @@ export const PATH: Path = {
     gnbType: 'default',
     open: true,
   },
-  LOGIN_PAGE: {
-    routerPattern: '/login/:type',
-    getPath: (type: LoginPageType) => `/login/${type}`,
-    regex: /\/login\/.+/,
-    gnbType: 'simple',
-    open: true,
-  },
   LOGIN_REQUIRED: {
     routerPattern: '/guard',
     getPath: () => '/guard',
@@ -90,6 +83,12 @@ export const PATH: Path = {
     routerPattern: '/password-reset/:token',
     getPath: (token: string) => `/password-reset/${token}`,
     regex: /\/password-reset\/.+/,
+    gnbType: 'simple',
+    open: true,
+  },
+  SEARCH: {
+    routerPattern: '/search',
+    getPath: () => '/search',
     gnbType: 'simple',
     open: true,
   },

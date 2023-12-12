@@ -49,7 +49,7 @@ const GnbMenu = ({ subscriptionButtonClassName, onLoginClick, onSubscriptionClic
       onLoginClick();
       return;
     }
-    openLoginDialog();
+    navigate(PATH.LOGIN.getPath());
   };
 
   const handleSubscriptionClick = () => {

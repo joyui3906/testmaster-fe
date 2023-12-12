@@ -22,10 +22,3 @@ export const MenuDivider = styled(Divider)`
 export const LinkText = styled(Typography)`
   color: ${Color.grey600};
 `;
-
-export const QuestAddButton = styled(Button)`
-  min-width: 88px;
-
-  padding: 8px 12px;
-  border-radius: 6px;
-`;
