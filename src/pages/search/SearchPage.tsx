@@ -12,17 +12,18 @@ import {
     Tabs,
     Typography
 } from '@mui/material';
-import {ChangeEvent, FormEventHandler, useEffect, useState} from 'react';
+import React, {ChangeEvent, FormEventHandler, useEffect, useState} from 'react';
 import Page from "@src/components/common/page/Page";
+import {AddSettingButton} from "@src/pages/search/SearchPage.style";
 
 const ContentStyle = styled.div`
-  maxWidth: 480,
-  margin: auto,
-  minHeight: 100vh,
-  display: flex,
-  justifyContent: center,
-  flexDirection: column,
-  padding: theme.spacing(12, 0),
+    maxWidth: 480,
+    margin: auto,
+    minHeight: 100vh,
+    display: flex,
+    justifyContent: center,
+    flexDirection: column,
+    padding: theme . spacing(12, 0),
 `;
 
 interface SearchProps {
@@ -31,8 +32,50 @@ interface SearchProps {
 
 const SearchPage = ({delayTimeMills = 0}: SearchProps) => {
 
-    const [searchType, setSearchType] = useState<string>('SMART');
-    const [bookType, setBookType] = useState<string>('TEXTBOOK');
+    const [bookTypes, setBookType] = useState([
+        {label: '배틀영어문제집',value: 'BATTLE_WORKBOOK'},
+        {label: '부교재', value: 'SUPPLEMENT'},
+        {label: '모의고사', value: 'PRACTICE_TEST'},
+        {label: '교과서문제집', value: 'TEXTBOOK_WORKBOOK'}
+    ]);
+    const [selectedBookType, setSelectedBookType] = useState<string>('BATTLE_WORKBOOK');
+
+    const [commonFilterOption, setCommonFilterOption] = useState([
+        {label: 'OMR 유형', value: 'OMR_TYPE'},
+        {label: '표지', value: 'COVER'}
+    ]);
+    const [battleFilterOption, setBattleFilterOption] = useState([
+        {label: '유형', value: 'TEST_TYPE'},
+        {label: '학년', value: 'GRADE'},
+        {label: '문제유형', value: 'PROBLEM_TYPE'},
+        {label: '소분류', value: 'SUBCATEGORY'},
+        {label: '등급', value: 'RANK'}
+    ]);
+    const [supplementFilterOption, setSupplementFilterOption] = useState([
+        {label: '유형', value: 'TEST_TYPE'},
+        {label: '출판사', value: 'PUBLISHER'},
+        {label: '년도', value: 'YEAR'},
+        {label: '문제집 Title', value: 'BOOK_TITLE'}
+    ]);
+
+    const [practiceTestFilterOption, setPracticeTestFilterOption] = useState([
+        {label: '유형', value: 'TEST_TYPE'},
+        {label: '학년', value: 'GRADE'},
+        {label: '년도', value: 'YEAR'},
+        {label: '월', value: 'MONTH'}
+    ]);
+
+    const [textbookFilterOption, setTextbookFilterOption] = useState([
+        {label: '학년', value: 'GRADE'},
+        {label: '출판사', value: 'PUBLISHER'},
+        {label: '학기-시험', value: 'SEMESTER_TEST'},
+        {label: '년도', value: 'YEAR'},
+        {label: '문제집 Title', value: 'BOOK_TITLE'}
+    ]);
+
+    const [filterOptions, setFilterOptions] = useState([
+
+    ]);
 
     const [formData, setFormData] = useState({
         email: '',
@@ -81,11 +124,8 @@ const SearchPage = ({delayTimeMills = 0}: SearchProps) => {
         setBookTitle(serverBookTitles);
     }, []);
 
-    const handleSearchTypeChange = (event: React.SyntheticEvent, newValue: string) => {
-        setSearchType(newValue);
-    };
-    const handleBookTypeChange = (event: React.SyntheticEvent, newValue: string) => {
-        setBookType(newValue);
+    const handleSelectedBookTypeChange = (event: React.SyntheticEvent, newValue: string) => {
+        setSelectedBookType(newValue);
     };
 
     const handleGradeChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -117,19 +157,100 @@ const SearchPage = ({delayTimeMills = 0}: SearchProps) => {
 //        e.preventDefault();
         console.log(formData); // 이곳에서 회원 가입 로직을 추가하면 됩니다.
     };
+
+
+    const renderFilterOptions = () => {
+        if (selectedBookType === 'BATTLE_WORKBOOK') {
+            return (
+                <Stack spacing={2}>
+                {battleFilterOption.map((filterOption) => (
+                        <Stack direction='row'
+                               divider={<Divider orientation="vertical" flexItem></Divider>}
+                               alignItems={"center"}
+                               spacing={2}
+                        >
+                            <Typography width='20%' sx={{flexShrink: 0}}>
+                                {filterOption.label}
+                            </Typography>
+                            <Tabs value={selectedTestType} onChange={handleTestTypeChange}>
+                                {testType.map((item) => (
+                                    <Tab label={item} value={item}/>
+                                ))}
+                            </Tabs>
+                        </Stack>
+                ))}
+                </Stack>
+            );
+        } else if (selectedBookType === 'SUPPLEMENT') {
+            return (
+                <Stack spacing={2}>
+                    {supplementFilterOption.map((filterOption) => (
+                        <Stack direction='row'
+                               divider={<Divider orientation="vertical" flexItem></Divider>}
+                               alignItems={"center"}
+                               spacing={2}
+                        >
+                            <Typography width='20%' sx={{flexShrink: 0}}>
+                                {filterOption.label}
+                            </Typography>
+                            <Tabs value={selectedTestType} onChange={handleTestTypeChange}>
+                                {testType.map((item) => (
+                                    <Tab label={item} value={item}/>
+                                ))}
+                            </Tabs>
+                        </Stack>
+                    ))}
+                </Stack>
+            );
+        } else if (selectedBookType === 'PRACTICE_TEST') {
+            return (
+                <Stack spacing={2}>
+                    {practiceTestFilterOption.map((filterOption) => (
+                        <Stack direction='row'
+                               divider={<Divider orientation="vertical" flexItem></Divider>}
+                               alignItems={"center"}
+                               spacing={2}
+                        >
+                            <Typography width='20%' sx={{flexShrink: 0}}>
+                                {filterOption.label}
+                            </Typography>
+                            <Tabs value={selectedTestType} onChange={handleTestTypeChange}>
+                                {testType.map((item) => (
+                                    <Tab label={item} value={item}/>
+                                ))}
+                            </Tabs>
+                        </Stack>
+                    ))}
+                </Stack>
+            );
+        }else if (selectedBookType === 'TEXTBOOK_WORKBOOK') {
+            return (
+                <Stack spacing={2}>
+                    {textbookFilterOption.map((filterOption) => (
+                        <Stack direction='row'
+                               divider={<Divider orientation="vertical" flexItem></Divider>}
+                               alignItems={"center"}
+                               spacing={2}
+                        >
+                            <Typography width='20%' sx={{flexShrink: 0}}>
+                                {filterOption.label}
+                            </Typography>
+                            <Tabs value={selectedTestType} onChange={handleTestTypeChange}>
+                                {testType.map((item) => (
+                                    <Tab label={item} value={item}/>
+                                ))}
+                            </Tabs>
+                        </Stack>
+                    ))}
+                </Stack>
+            );
+        }
+    }
+
+
+
     return (
         <Page>
-            <Container maxWidth={false}>
-                <Tabs
-                    sx={{
-                        "& button.Mui-selected": {backgroundColor: 'orange'}
-                    }}
-                    value={searchType}
-                    onChange={handleSearchTypeChange}>
-                    <Tab label='스마트 검색' value='SMART'/>
-                    <Tab label='일반 검색' value='GENERAL'/>
-                </Tabs>
-            </Container>
             <Container maxWidth={false} sx={{pt: 2}}>
                 <Stack direction={"row"} spacing={2}>
                     <Box>
@@ -143,6 +264,7 @@ const SearchPage = ({delayTimeMills = 0}: SearchProps) => {
                                 ))}
                             </Select>
                         </FormControl>
+                        <AddSettingButton>+</AddSettingButton>
                     </Box>
                     <Box>
                         <FormControl sx={{minWidth: 120}}>
@@ -155,6 +277,7 @@ const SearchPage = ({delayTimeMills = 0}: SearchProps) => {
                                 ))}
                             </Select>
                         </FormControl>
+                        <AddSettingButton>+</AddSettingButton>
                     </Box>
                     <Box>
                         <FormControl sx={{minWidth: 120}}>
@@ -167,86 +290,38 @@ const SearchPage = ({delayTimeMills = 0}: SearchProps) => {
                                 ))}
                             </Select>
                         </FormControl>
+                        <AddSettingButton>+</AddSettingButton>
                     </Box>
                 </Stack>
-                <Stack sx={{pt: 1}}>
-                    <Tabs value={bookType} onChange={handleBookTypeChange}>
-                        <Tab label='교과서' value='TEXTBOOK'/>
-                        <Tab label='부교재' value='SUPPLEMENT'/>
+                <Stack sx={{pt: 1}} direction="row">
+                    <Tabs value={selectedBookType} onChange={handleSelectedBookTypeChange}>
+                        {bookTypes.map((bookType) => (
+                            <Tab label={bookType.label} value={bookType.value}/>
+                        ))}
                     </Tabs>
+                    <AddSettingButton>+</AddSettingButton>
                 </Stack>
                 <Box
                     sx={{border: '1px solid black', mt: 1}}
                 >
-                    <Stack direction='row'
-                           divider={<Divider orientation="vertical" flexItem></Divider>}
-                           alignItems={"center"}
-                           spacing={2}
-                    >
-                        <Typography width='20%' sx={{flexShrink: 0}}>
-                            학년
-                        </Typography>
-                        <Tabs value={selectedGrade} onChange={handleGradeChange}>
-                            {grade.map((item) => (
-                                <Tab label={item} value={item}/>
-                            ))}
-                        </Tabs>
-                    </Stack>
-                    <Stack direction='row'
-                           divider={<Divider orientation="vertical" flexItem></Divider>}
-                           alignItems={"center"}
-                           spacing={2}
-                    >
-                        <Typography width='20%' sx={{flexShrink: 0}}>
-                            출판사
-                        </Typography>
-                        <Tabs value={selectedPublisher} onChange={handlePublisherChange}>
-                            {publisher.map((item) => (
-                                <Tab label={item} value={item}/>
-                            ))}
-                        </Tabs>
-                    </Stack>
-                    <Stack direction='row'
-                           divider={<Divider orientation="vertical" flexItem></Divider>}
-                           alignItems={"center"}
-                           spacing={2}
-                    >
-                        <Typography width='20%' sx={{flexShrink: 0}}>
-                            학기-시험
-                        </Typography>
-                        <Tabs value={selectedTestType} onChange={handleTestTypeChange}>
-                            {testType.map((item) => (
-                                <Tab label={item} value={item}/>
-                            ))}
-                        </Tabs>
-                    </Stack>
-                    <Stack direction='row'
-                           divider={<Divider orientation="vertical" flexItem></Divider>}
-                           alignItems={"center"}
-                           spacing={2}
-                    >
-                        <Typography width='20%' sx={{flexShrink: 0}}>
-                            년도
-                        </Typography>
-                        <Tabs value={selectedYear} onChange={handleYearChange}>
-                            {years.map((item) => (
-                                <Tab label={item} value={item}/>
-                            ))}
-                        </Tabs>
-                    </Stack>
-                    <Stack direction='row'
-                           divider={<Divider orientation="vertical" flexItem></Divider>}
-                           alignItems={"center"}
-                           spacing={2}
-                    >
-                        <Typography width='20%' sx={{flexShrink: 0}}>
-                            문제집 Title
-                        </Typography>
-                        <Tabs value={selectedBookTitle} onChange={handleBookTitleChange}>
-                            {bookTitle.map((item) => (
-                                <Tab label={item} value={item}/>
-                            ))}
-                        </Tabs>
+                    {renderFilterOptions()}
+                    <Stack spacing={2} sx={{mt:2}}>
+                        {commonFilterOption.map((filterOption) => (
+                            <Stack direction='row'
+                                   divider={<Divider orientation="vertical" flexItem></Divider>}
+                                   alignItems={"center"}
+                                   spacing={2}
+                            >
+                                <Typography width='20%' sx={{flexShrink: 0}}>
+                                    {filterOption.label}
+                                </Typography>
+                                <Tabs value={selectedTestType} onChange={handleTestTypeChange}>
+                                    {testType.map((item) => (
+                                        <Tab label={item} value={item}/>
+                                    ))}
+                                </Tabs>
+                            </Stack>
+                        ))}
                     </Stack>
 
                 </Box>
