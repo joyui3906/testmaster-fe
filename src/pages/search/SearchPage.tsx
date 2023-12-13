@@ -33,17 +33,13 @@ interface SearchProps {
 const SearchPage = ({delayTimeMills = 0}: SearchProps) => {
 
     const [bookTypes, setBookType] = useState([
-        {label: '배틀영어문제집',value: 'BATTLE_WORKBOOK'},
+        {label: '배틀영어문제집', value: 'BATTLE_WORKBOOK'},
         {label: '부교재', value: 'SUPPLEMENT'},
         {label: '모의고사', value: 'PRACTICE_TEST'},
         {label: '교과서문제집', value: 'TEXTBOOK_WORKBOOK'}
     ]);
     const [selectedBookType, setSelectedBookType] = useState<string>('BATTLE_WORKBOOK');
 
-    const [commonFilterOption, setCommonFilterOption] = useState([
-        {label: 'OMR 유형', value: 'OMR_TYPE'},
-        {label: '표지', value: 'COVER'}
-    ]);
     const [battleFilterOption, setBattleFilterOption] = useState([
         {label: '유형', value: 'TEST_TYPE'},
         {label: '학년', value: 'GRADE'},
@@ -73,9 +69,28 @@ const SearchPage = ({delayTimeMills = 0}: SearchProps) => {
         {label: '문제집 Title', value: 'BOOK_TITLE'}
     ]);
 
-    const [filterOptions, setFilterOptions] = useState([
+    const [testType, setTestType] = useState([]);
+    const [selectedTestType, setSelectedTestType] = useState<string>();
+    const [grade, setGrade] = useState([]);
+    const [selectedGrade, setSelectedGrade] = useState<string>();
+    const [problemType, setProblemType] = useState([]);
+    const [selectedProblemType, setSelectedProblemType] = useState<string>();
+    const [subcategory, setSubcategory] = useState([]);
+    const [selectedSubcategory, setSelectedSubcategory] = useState<string>();
+    const [rank, setRank] = useState([]);
+    const [selectedRank, setSelectedRank] = useState<string>();
+    const [publisher, setPublisher] = useState([]);
+    const [selectedPublisher, setSelectedPublisher] = useState<string>();
+    const [year, setYear] = useState([]);
+    const [selectedYear, setSelectedYear] = useState<string>();
+    const [month, setMonth] = useState([]);
+    const [selectedMonth, setSelectedMonth] = useState<string>();
+    const [bookTitle, setBookTitle] = useState([]);
+    const [selectedBookTitle, setSelectedBookTitle] = useState<string>();
+    const [semesterTest, setSemesterTest] = useState([]);
+    const [selectedSemesterTest, setSelectedSemesterTest] = useState<string>();
 
-    ]);
+    const [filterOptions, setFilterOptions] = useState([]);
 
     const [formData, setFormData] = useState({
         email: '',
@@ -83,22 +98,13 @@ const SearchPage = ({delayTimeMills = 0}: SearchProps) => {
         name: '',
     });
 
-    const [subjects, setSubjects] = useState<string[]>([]);
-    const [levels, setLevels] = useState<string[]>([]);
-    const [types, setTypes] = useState<string[]>([]);
-    const [grade, setGrade] = useState<string[]>([]);
-    const [selectedGrade, setSelectedGrade] = useState<string>();
-    const [publisher, setPublisher] = useState<string[]>([]);
-    const [selectedPublisher, setSelectedPublisher] = useState<string>();
-    const [testType, setTestType] = useState<string[]>([]);
-    const [selectedTestType, setSelectedTestType] = useState<string>();
-    const [years, setYears] = useState<string[]>([]);
-    const [selectedYear, setSelectedYear] = useState<string>();
-    const [bookTitle, setBookTitle] = useState<string[]>([]);
-    const [selectedBookTitle, setSelectedBookTitle] = useState<string>();
-    const [answerSheetType, setAnswerSheetType] = useState<string[]>([]);
-    const [selectedAnswerSheetType, setSelectedAnswerSheetType] = useState<string>();
+    const [omrType, setOmrType] = useState([
+        {label: '번호별', value: 'NUMBER'},
+        {label: '페이지별', value: 'PAGE'},
+        {label: '분류별', value: 'TYPE'}
+    ]);
 
+    const [selectedOmrType, setSelectedOmrType] = useState<string>();
 
     useEffect(() => {
         // 서버에서 선택지를 가져오는 API 호출
@@ -163,7 +169,7 @@ const SearchPage = ({delayTimeMills = 0}: SearchProps) => {
         if (selectedBookType === 'BATTLE_WORKBOOK') {
             return (
                 <Stack spacing={2}>
-                {battleFilterOption.map((filterOption) => (
+                    {battleFilterOption.map((filterOption) => (
                         <Stack direction='row'
                                divider={<Divider orientation="vertical" flexItem></Divider>}
                                alignItems={"center"}
@@ -177,8 +183,10 @@ const SearchPage = ({delayTimeMills = 0}: SearchProps) => {
                                     <Tab label={item} value={item}/>
                                 ))}
                             </Tabs>
+                            <AddSettingButton>+</AddSettingButton>
+
                         </Stack>
-                ))}
+                    ))}
                 </Stack>
             );
         } else if (selectedBookType === 'SUPPLEMENT') {
@@ -198,6 +206,8 @@ const SearchPage = ({delayTimeMills = 0}: SearchProps) => {
                                     <Tab label={item} value={item}/>
                                 ))}
                             </Tabs>
+                            <AddSettingButton>+</AddSettingButton>
+
                         </Stack>
                     ))}
                 </Stack>
@@ -218,12 +228,13 @@ const SearchPage = ({delayTimeMills = 0}: SearchProps) => {
                                 {testType.map((item) => (
                                     <Tab label={item} value={item}/>
                                 ))}
-                            </Tabs>
+                            </Tabs> <AddSettingButton>+</AddSettingButton>
+
                         </Stack>
                     ))}
                 </Stack>
             );
-        }else if (selectedBookType === 'TEXTBOOK_WORKBOOK') {
+        } else if (selectedBookType === 'TEXTBOOK_WORKBOOK') {
             return (
                 <Stack spacing={2}>
                     {textbookFilterOption.map((filterOption) => (
@@ -239,14 +250,14 @@ const SearchPage = ({delayTimeMills = 0}: SearchProps) => {
                                 {testType.map((item) => (
                                     <Tab label={item} value={item}/>
                                 ))}
-                            </Tabs>
+                            </Tabs> <AddSettingButton>+</AddSettingButton>
+
                         </Stack>
                     ))}
                 </Stack>
             );
         }
     }
-
 
 
     return (
@@ -305,25 +316,40 @@ const SearchPage = ({delayTimeMills = 0}: SearchProps) => {
                     sx={{border: '1px solid black', mt: 1}}
                 >
                     {renderFilterOptions()}
-                    <Stack spacing={2} sx={{mt:2}}>
-                        {commonFilterOption.map((filterOption) => (
-                            <Stack direction='row'
-                                   divider={<Divider orientation="vertical" flexItem></Divider>}
-                                   alignItems={"center"}
-                                   spacing={2}
-                            >
-                                <Typography width='20%' sx={{flexShrink: 0}}>
-                                    {filterOption.label}
-                                </Typography>
-                                <Tabs value={selectedTestType} onChange={handleTestTypeChange}>
-                                    {testType.map((item) => (
-                                        <Tab label={item} value={item}/>
-                                    ))}
-                                </Tabs>
-                            </Stack>
-                        ))}
-                    </Stack>
 
+                    <Stack spacing={2} sx={{mt: 2}}>
+                        <Stack direction='row'
+                               divider={<Divider orientation="vertical" flexItem></Divider>}
+                               alignItems={"center"}
+                               spacing={2}
+                        >
+                            <Typography width='20%' sx={{flexShrink: 0}}>
+                                OMR 유형
+                            </Typography>
+                            <Tabs value={selectedTestType} onChange={handleTestTypeChange}>
+                                {omrType.map((item) => (
+                                    <Tab label={item.label} value={item.value}/>
+                                ))}
+                            </Tabs>
+                            <AddSettingButton>+</AddSettingButton>
+                        </Stack>
+                    </Stack>
+                    <Stack spacing={2} sx={{mt: 2}}>
+                        <Stack direction='row'
+                               divider={<Divider orientation="vertical" flexItem></Divider>}
+                               alignItems={"center"}
+                               spacing={2}
+                        >
+                            <Typography width='20%' sx={{flexShrink: 0}}>
+                                표지
+                            </Typography>
+                            <Tabs value={selectedTestType} onChange={handleTestTypeChange}>
+                                {testType.map((item) => (
+                                    <Tab label={item} value={item}/>
+                                ))}
+                            </Tabs>
+                        </Stack>
+                    </Stack>
                 </Box>
             </Container>
         </Page>
